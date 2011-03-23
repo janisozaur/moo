@@ -113,8 +113,10 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 		method = char(method(get(handles.functionCombo, 'Value')));
 		% ewaluuje funkcję, która jest pierwszym argumentem (string) z
 		% kolejnym argumentami
-		feval(method, fun, a(1, i), a(2, i), epsilon)
+		a(3, i) = feval(method, fun, a(1, i), a(2, i), epsilon);
+		a(4, i) = valueInPoint(fun, a(3, i));
 	end
+	set(handles.unimodalTable, 'Data', a');
 
 
 function startEdit_Callback(hObject, eventdata, handles)
