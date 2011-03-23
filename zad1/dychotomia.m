@@ -11,9 +11,9 @@ function [x, iterations] = dychotomia(fun, a, b, epsilon, inputIterations)
 			x = xl;
 		end
 	elseif (valueInPoint(fun, xl) > valueInPoint(fun, xp))
-		x = dychotomia(fun, xl, b, epsilon);
+		[x, iterations] = dychotomia(fun, xl, b, epsilon, iterations);
 	else
-		x = dychotomia(fun, a, xp, epsilon);
+		[x, iterations] = dychotomia(fun, a, xp, epsilon, iterations);
 	end
 end
 
