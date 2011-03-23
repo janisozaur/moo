@@ -117,6 +117,12 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 		a(4, i) = valueInPoint(fun, a(3, i));
 	end
 	set(handles.unimodalTable, 'Data', a');
+	x = linspace(startPoint, endPoint, 1000);
+	y = [];
+	for i = 1:size(x, 2)
+		y = [y, valueInPoint(fun, x(i))];
+	end;
+	plot(x, y);
 
 
 function startEdit_Callback(hObject, eventdata, handles)
