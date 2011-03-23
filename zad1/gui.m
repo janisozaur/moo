@@ -118,9 +118,9 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 	end
 	set(handles.unimodalTable, 'Data', a');
 	x = linspace(startPoint, endPoint, 1000);
-	y = [];
+	y = zeros(1, 1000);
 	for i = 1:size(x, 2)
-		y = [y, valueInPoint(fun, x(i))];
+		y(i) = valueInPoint(fun, x(i));
 	end;
 	plot(x, y);
 	hold on;
