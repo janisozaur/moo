@@ -1,4 +1,5 @@
-function x = dychotomia(fun, a, b, epsilon)
+function [x, iterations] = dychotomia(fun, a, b, epsilon, inputIterations)
+	iterations = inputIterations + 1;
 	middle = (a + b) / 2;
 	d = abs(b - middle) / 2;
 	xl = middle - d;

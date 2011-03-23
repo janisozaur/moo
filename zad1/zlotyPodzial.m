@@ -1,8 +1,10 @@
-function x = zlotyPodzial(fun, a, b, epsilon)
+function [x, iterations] = zlotyPodzial(fun, a, b, epsilon, inputIterations)
+	iterations = inputIterations;
 	k = (sqrt(5) - 1) / 2;
 	xl = b - k * (b - a);
 	xp = a + k * (b - a);
 	while ((xp - xl) > epsilon)
+		iterations = iterations + 1;
 		if (valueInPoint(fun, xl) < valueInPoint(fun, xp))
 			b = xp;
 			xp = xl;
