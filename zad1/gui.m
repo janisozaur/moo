@@ -123,6 +123,8 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 		y = [y, valueInPoint(fun, x(i))];
 	end;
 	plot(x, y);
+	hold on;
+	plot(a(3, :), a(4, :), 'o', 'LineWidth', 3, 'MarkerSize', 5, 'MarkerFaceColor', 'red');
 
 
 function startEdit_Callback(hObject, eventdata, handles)
