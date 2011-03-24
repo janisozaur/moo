@@ -129,6 +129,8 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 	minX = a(3, minIdx);
 	minText = sprintf('Znalezione minimum globalne w podanym przedziale znajduje się w %g i wynosi %g', minX, minY);
 	set(handles.minimumLabel, 'String', minText);
+	plot(a(1, :), 0, '>', 'LineWidth', 3, 'MarkerSize', 5, 'MarkerFaceColor', 'green');
+	plot(a(2, :), 0, '<', 'LineWidth', 3, 'MarkerSize', 5, 'MarkerFaceColor', 'green');
 
 
 function startEdit_Callback(hObject, eventdata, handles)
