@@ -1,4 +1,4 @@
-function [result, iterations] = armijo(f, startPoint, direction, c1, x, epsilon, iterationsInput)
+function [result, iterations] = armijo(f, startPoint, direction, c1, c2, x, epsilon, iterationsInput)
 	iterations = iterationsInput + 1;
 	delta = -sign(myDiff(f, startPoint, direction, x, epsilon));
 	while (armijoCondition(f, startPoint, direction, x, c1, delta, epsilon))
