@@ -7,7 +7,7 @@ function [result, iterations] = wolf(f, startPoint, direction, c1, c2, x, epsilo
 	x = x + delta;
 	result = x;
 	if (abs(myDiff(f, startPoint, direction, x, epsilon)) > epsilon)
-		[result, iterations] = armijo(f, startPoint, direction, c1, x, epsilon, iterations);
+		[result, iterations] = wolf(f, startPoint, direction, c1, c2, x, epsilon, iterations);
 	end
 end
 
