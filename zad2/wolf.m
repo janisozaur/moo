@@ -11,10 +11,6 @@ function [result, iterations] = wolf(f, startPoint, direction, c1, c2, ro, x, ep
 	end
 end
 
-function result = armijoCondition(f, startPoint, direction, x, c1, mystep, epsilon)
-	result = valueInPoint(f, startPoint, direction, x + mystep) <= valueInPoint(f, startPoint, direction, x) + c1 * mystep * myDiff(f, startPoint, direction, x, epsilon);
-end
-
 function result = wolfCondition(f, startPoint, direction, x, c2, mystep, epsilon)
 	result = abs(myDiff(f, startPoint, direction, x + mystep, epsilon)) < abs(c2 * myDiff(f, startPoint, direction, x, epsilon));
 end
