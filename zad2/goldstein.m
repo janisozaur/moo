@@ -2,7 +2,11 @@ function [result, iterations] = goldstein(f, startPoint, direction, c1, c2, ro, 
 	iterations = iterationsInput + 1;
 	delta = -sign(myDiff(f, startPoint, direction, x, epsilon));
 	while (~goldsteinCondition(f, startPoint, direction, x, c1, delta, epsilon))
-		delta = ro * delta;
+		if (~armijoCondition(f, startPoint, direction, x, c1, delta, epsilon))
+			delta = ro * delta;
+		else
+			delta = delta / ro;
+		end
 	end
 	x = x + delta;
 	result = x;
