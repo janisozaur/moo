@@ -1,0 +1,73 @@
+\documentclass{classrep}
+\usepackage[utf8]{inputenc}
+\usepackage[pdftex]{graphicx}
+\usepackage[polish]{babel}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{url}
+
+\studycycle{Informatyka, studia dzienne, II st.}
+\coursesemester{I}
+
+\coursename{Metody Obliczeniowe Optymalizacji}
+\courseyear{2010/2011}
+
+\courseteacher{xxxxxx}
+\coursegroup{czwartek, 14:15}
+\svnurl{xxxxxx}
+
+\author{%
+  \studentinfo{Michał Janiszewski}{169485} \and
+  \studentinfo{Leszek Wach}{xxxxxx}
+}
+
+\title{Zadanie 2: Optymalizacja kierunkowa}
+
+\floatname{algorithm}{Algorytm}
+
+\begin{document}
+
+\maketitle
+
+\section{Cel zadania}
+Celem zadania było napisanie programu, który dla dowolnej funkcji dwóch zmiennych znajdzie jej minimum wzdłuż wyznaczonego odcinka \ppauza dokona minimalizacji kierunkowej. Operacja ta ma odbywać się z wykorzystaniem trzech kryteriów:
+\begin{enumerate}
+ \item Armijo,
+ \item Wolfa,
+ \item Goldensteina.
+\end{enumerate}
+
+\section{Metoda rozwiązania}
+W celu rozwiązania zadania stworzyliśmy skrypt programu Matlab. Skrypt prezentuje użytkownikowi okienko GUI, w którym należy wprowadzić parametry:
+\begin{description}
+ \item[funkcja] funkcja, która poddawana będzie optymalizacji,
+ \item[start] punkt początkowy, oznaczany jako $x_0$
+ \item[direction] kierunek; wektor od punktu początkowego do końcowego, oznaczany jako $\overrightarrow{d}$
+ \item[c$_1$, c$_2$] parametry określające zachowanie się metod\footnote{Znaczenie tych parametrów zostanie omówione wraz z metodami.},
+ \item[$\rho$] współczynnik zmiany kroku,
+ \item[$\epsilon$] pożądana dokładność rozwiązania,
+\end{description}
+należy także wybrać jedno z dostępnych kryteriów.
+
+\section{Kryteria}
+Zadaniem programu jest poszukiwanie pewnej wartości kroku $\lambda$, która wyraża krotność wektora kierunku rozpoczynającego się w punkcie startowym. Krok ten będzie odpowiadał znalezionemu minimum.
+
+Poszukiwanie wartości kroku jest metodą iteracyjną, która w każdej iteracji przybliża wartość kroku, aż do osiągnięcia zadanego warunku stopu \ppauza w tym przypadku jest to kryterium stacjonarości:
+\begin{equation}
+ \lvert\nabla F(x_0 + \lambda * \overrightarrow{d})\rvert \leq \epsilon
+\end{equation}
+
+
+\begin{thebibliography}{99}
+\bibitem{grega.wyklad}
+Grega, Wojciech. \textit{Metody optymalizacji. Wykład 4} [online]. [dostęp: 27
+marca 2011]. Dostępny w Internecie:
+http://aq.ia.agh.edu.pl/Aquarium/Dydaktyk/Wyklady/MO/2005-06/Wyklad04.PDF
+\end{thebibliography}
+
+\end{document}
