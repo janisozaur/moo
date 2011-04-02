@@ -22,7 +22,7 @@ function varargout = gui(varargin)
 
 % Edit the above text to modify the response to help gui
 
-% Last Modified by GUIDE v2.5 31-Mar-2011 10:32:48
+% Last Modified by GUIDE v2.5 02-Apr-2011 18:08:42
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -104,11 +104,17 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 	fun = get(handles.functionEdit, 'String');
 	startX = eval(get(handles.startXEdit, 'String'));
 	startY = eval(get(handles.startYEdit, 'String'));
-	stopX = eval(get(handles.stopXEdit, 'String'));
-	stopY = eval(get(handles.stopYEdit, 'String'));
+	directionX = eval(get(handles.dirXEdit, 'String'));
+	directionY = eval(get(handles.dirYEdit, 'String'));
 	c1 = eval(get(handles.c1Edit, 'String'));
 	c2 = eval(get(handles.c2Edit, 'String'));
+	ro = eval(get(handles.roEdit, 'String'));
 	epsilon = eval(get(handles.epsilonEdit, 'String'));
+	method = get(handles.functionCombo, 'String');
+	method = char(method(get(handles.functionCombo, 'Value')));
+	startPoint = [startX, startY];
+	direction = [directionX, directionY];
+	[step, iterations] = feval(method, fun, startPoint, direction, c1, c2, ro, 0, epsilon, 0)
 
 
 function startXEdit_Callback(hObject, eventdata, handles)
@@ -226,18 +232,18 @@ end
 
 
 
-function stopXEdit_Callback(hObject, eventdata, handles)
-% hObject    handle to stopXEdit (see GCBO)
+function dirXEdit_Callback(hObject, eventdata, handles)
+% hObject    handle to dirXEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of stopXEdit as text
-%        str2double(get(hObject,'String')) returns contents of stopXEdit as a double
+% Hints: get(hObject,'String') returns contents of dirXEdit as text
+%        str2double(get(hObject,'String')) returns contents of dirXEdit as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function stopXEdit_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to stopXEdit (see GCBO)
+function dirXEdit_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to dirXEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -249,18 +255,18 @@ end
 
 
 
-function stopYEdit_Callback(hObject, eventdata, handles)
-% hObject    handle to stopYEdit (see GCBO)
+function dirYEdit_Callback(hObject, eventdata, handles)
+% hObject    handle to dirYEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of stopYEdit as text
-%        str2double(get(hObject,'String')) returns contents of stopYEdit as a double
+% Hints: get(hObject,'String') returns contents of dirYEdit as text
+%        str2double(get(hObject,'String')) returns contents of dirYEdit as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function stopYEdit_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to stopYEdit (see GCBO)
+function dirYEdit_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to dirYEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -284,6 +290,29 @@ function c2Edit_Callback(hObject, eventdata, handles)
 % --- Executes during object creation, after setting all properties.
 function c2Edit_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to c2Edit (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function roEdit_Callback(hObject, eventdata, handles)
+% hObject    handle to roEdit (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of roEdit as text
+%        str2double(get(hObject,'String')) returns contents of roEdit as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function roEdit_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to roEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
