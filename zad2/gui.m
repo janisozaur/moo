@@ -115,7 +115,22 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 	omega = get(handles.omegaEdit, 'String');
 	startPoint = [startX, startY];
 	direction = [directionX, directionY];
-	[step, iterations] = feval(method, fun, startPoint, direction, c1, c2, ro, 0, epsilon, omega, 0)
+	a = [0.1, 0.2, 0.3, 0.4];
+	b = [0.2, 0.4, 0.6];
+	c = [0.1, 0.3, 0.5];
+	%for i1 = 1:size(a, 2)
+	%	for i2 = 1:size(b, 2)
+	%		for i3 = 1:size(c, 2)
+	%			c1 = a(i1);
+	%			c2 = b(i2);
+	%			ro = c(i3);
+				[step, iterations] = feval(method, fun, startPoint, direction, c1, c2, ro, 0, epsilon, omega, 0);
+				result = startPoint + step * direction;
+				fprintf(1, '    %g & %g & %g & %d & %g & %g & %g \\\\\n', c1, ro, step, iterations, result(1), result(2), valueInPoint(fun, startPoint, direction, step));
+				%fprintf(1, '    %g & %g & %g & %g & %d & %g & %g & %g \\\\\n', c1, c2, ro, step, iterations, result(1), result(2), valueInPoint(fun, startPoint, direction, step));
+	%		end
+	%	end
+	%end
 
 
 function startXEdit_Callback(hObject, eventdata, handles)
