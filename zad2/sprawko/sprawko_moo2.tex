@@ -47,7 +47,7 @@ W celu rozwiązania zadania stworzyliśmy skrypt programu Matlab. Skrypt prezent
 \begin{description}
  \item[funkcja] funkcja, która poddawana będzie optymalizacji, oznaczona jako $F$,
  \item[start] punkt początkowy, oznaczany jako $p_0$,
- \item[direction] kierunek; wektor od punktu początkowego do końcowego, oznaczany jako $\overrightarrow{d}$,
+ \item[direction] kierunek; wektor od punktu początkowego do końcowego, oznaczany jako $d$,
  \item[c$_1$, c$_2$] parametry określające zachowanie się metod\footnote{Znaczenie tych parametrów zostanie omówione wraz z metodami.},
  \item[$\rho$] współczynnik zmiany kroku,
  \item[$\epsilon$] pożądana dokładność rozwiązania,
@@ -59,7 +59,7 @@ Zadaniem programu jest poszukiwanie pewnej wartości kroku $\lambda$, która wyr
  f(\lambda) = F(p_0.x + \lambda \cdot d.x, p_0.y + \lambda \cdot d.y)
 \end{equation}
 
-Należy zauważyć, że wartościom kroku należącym odcinka $\overline{p_0, p_0 + \overrightarrow{d}}$ odpowiadają wartości [0,~1].
+Należy zauważyć, że wartościom kroku należącym odcinka $\overline{p_0, p_0 + d}$ odpowiadają wartości [0,~1].
 
 Poszukiwanie wartości kroku jest metodą iteracyjną, która w każdej iteracji przybliża wartość rozwiązania, aż do osiągnięcia zadanego warunku stopu \ppauza w tym przypadku jest to kryterium stacjonarości:
 \begin{equation}
