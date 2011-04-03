@@ -1,4 +1,4 @@
-function [result, iterations] = goldstein(f, startPoint, direction, c1, c2, ro, x, epsilon, iterationsInput)
+function [result, iterations] = goldstein(f, startPoint, direction, c1, c2, ro, x, epsilon, omega, iterationsInput)
 	iterations = iterationsInput + 1;
 	delta = -sign(myDiff(f, startPoint, direction, x, epsilon));
 	while (~goldsteinCondition(f, startPoint, direction, x, c1, delta, epsilon))
@@ -11,7 +11,7 @@ function [result, iterations] = goldstein(f, startPoint, direction, c1, c2, ro, 
 	x = x + delta;
 	result = x;
 	if (abs(myDiff(f, startPoint, direction, x, epsilon)) > epsilon)
-		[result, iterations] = goldstein(f, startPoint, direction, c1, c2, ro, x, epsilon, iterations);
+		[result, iterations] = goldstein(f, startPoint, direction, c1, c2, ro, x, epsilon, omega, iterations);
 	end
 end
 

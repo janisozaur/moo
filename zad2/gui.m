@@ -22,7 +22,7 @@ function varargout = gui(varargin)
 
 % Edit the above text to modify the response to help gui
 
-% Last Modified by GUIDE v2.5 02-Apr-2011 18:08:42
+% Last Modified by GUIDE v2.5 03-Apr-2011 21:41:25
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -112,9 +112,10 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 	epsilon = eval(get(handles.epsilonEdit, 'String'));
 	method = get(handles.functionCombo, 'String');
 	method = char(method(get(handles.functionCombo, 'Value')));
+	omega = get(handles.omegaEdit, 'String');
 	startPoint = [startX, startY];
 	direction = [directionX, directionY];
-	[step, iterations] = feval(method, fun, startPoint, direction, c1, c2, ro, 0, epsilon, 0)
+	[step, iterations] = feval(method, fun, startPoint, direction, c1, c2, ro, 0, epsilon, omega, 0)
 
 
 function startXEdit_Callback(hObject, eventdata, handles)
@@ -313,6 +314,29 @@ function roEdit_Callback(hObject, eventdata, handles)
 % --- Executes during object creation, after setting all properties.
 function roEdit_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to roEdit (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function omegaEdit_Callback(hObject, eventdata, handles)
+% hObject    handle to omegaEdit (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of omegaEdit as text
+%        str2double(get(hObject,'String')) returns contents of omegaEdit as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function omegaEdit_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to omegaEdit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
