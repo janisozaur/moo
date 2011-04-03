@@ -110,6 +110,17 @@ gdzie $c_1 \in (0, 1)$, natomiast $c_2 \in (c_1, 1)$.
 
 Zadaniem tego kryterium jest zagwarantowanie, że w miejscu dużego spadku funkcji, krok nie będzie mały.
 
+\subsection{Kryterium Goldsteina}
+Podobnie jak kryterium Wolfa, kryterium Goldsteina kontroluje zarówno górną jak i dolną granicę kroku zabezpieczając przed zbyt wolnym testowaniem zbieżności.
+
+Tak jak w poprzednim przypadku, również tu wykorzystane jest kryterium Armijo do określania górnej granicy.
+
+\begin{eqnarray}
+    f(\lambda + \lambda_k) & \leq & f(\lambda) + c_1 \cdot \lambda_k \cdot f'(\lambda) \\
+    f(\lambda + \lambda_k) & \geq & f(\lambda) + (1 - c_1) \cdot \lambda_k \cdot f'(\lambda)
+\end{eqnarray}
+gdzie $c_1 \in (0, \frac{1}{2})$.
+
 \begin{thebibliography}{99}
 \bibitem{grega.wyklad}
 Grega, Wojciech. \textit{Metody optymalizacji. Wykład 4} [online]. [dostęp: 27
