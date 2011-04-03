@@ -5,7 +5,7 @@ function [result, iterations] = goldstein(f, startPoint, direction, c1, c2, ro, 
 		if (~armijoCondition(f, startPoint, direction, x, c1, delta, epsilon))
 			delta = ro * delta;
 		else
-			delta = delta / ro;
+			delta = delta * omega;
 		end
 	end
 	x = x + delta;
