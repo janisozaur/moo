@@ -97,6 +97,18 @@ Najprostszy test, kryterium Armijo, sprawdza czy spadek wartości funkcji w dane
  f(\lambda + \lambda_k) \leq f(\lambda) + c_1 \cdot \lambda_k \cdot f'(\lambda)
 \end{equation}
 
+\subsection{Kryterium Wolfa}
+Podstawową wadą kryterium Armijo jest ograniczanie tylko maksymalnej długości kroku, co może prowadzić do bardzo wolnej zbieżności \ppauza poprzez stosowanie możliwie najmniejszego kroku $\lambda_k$.
+
+Kryterium Wolfa łączy kryterium Armijo z testem krzywizny, który ogranicza wartość kroku od dołu:
+
+\begin{eqnarray}
+    f(\lambda + \lambda_k)  & \leq & f(\lambda) + c_1 \cdot \lambda_k \cdot f'(\lambda) \\
+    f'(\lambda + \lambda_k) & \geq & c_2 \cdot f'(\lambda)
+\end{eqnarray}
+gdzie $c_1 \in (0, 1)$, natomiast $c_2 \in (c_1, 1)$.
+
+Zadaniem tego kryterium jest zagwarantowanie, że w miejscu dużego spadku funkcji, krok nie będzie mały.
 
 \begin{thebibliography}{99}
 \bibitem{grega.wyklad}
