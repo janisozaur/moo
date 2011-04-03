@@ -48,7 +48,7 @@ W celu rozwiązania zadania stworzyliśmy skrypt programu Matlab. Skrypt prezent
  \item[funkcja] funkcja, która poddawana będzie optymalizacji, oznaczona jako $F$,
  \item[start] punkt początkowy, oznaczany jako $p_0$,
  \item[direction] kierunek; wektor od punktu początkowego do końcowego, oznaczany jako $d$,
- \item[c$_1$, c$_2$] parametry określające zachowanie się metod\footnote{Znaczenie tych parametrów zostanie omówione wraz z metodami.},
+ \item[c$_1$, c$_2$] parametry określające zachowanie się metod\footnote{Znaczenie tych parametrów różni się pomiędzy metodami.},
  \item[$\rho$] współczynnik zmiany kroku,
  \item[$\epsilon$] pożądana dokładność rozwiązania,
 \end{description}
@@ -120,6 +120,116 @@ Tak jak w poprzednim przypadku, również tu wykorzystane jest kryterium Armijo 
     f(\lambda + \lambda_k) & \geq & f(\lambda) + (1 - c_1) \cdot \lambda_k \cdot f'(\lambda)
 \end{eqnarray}
 gdzie $c_1 \in (0, \frac{1}{2})$.
+
+\section{Wyniki}
+Poniższe tabele prezentują wyniki otrzymane za pomocą napisanego programu. Otrzymane wyniki zostały porównane z wynikami otrzymanymi za pomocą serwisu WolframAlpha.
+
+\subsection{Funkcja testowa 1}
+Pierwsza funkcja testowa była postaci:
+\begin{equation}
+ F(x, y) = x^2 \cdot \sin(x) + y^2 \cdot \sin(y)
+\end{equation}
+
+Punktem startowym testów był punkt $(-4; -4)$, zaś wektor kierunku miał wartości $[2; 2]$.
+
+\subsubsection{Armijo}
+
+Wyniki działania metody Armijo prezentuje tabela \ref{armijo1}.
+
+\begin{table}
+  \centering
+  \caption{Wyniki działania programu dla funkcji testowej 1 dla kryterium Armijo}
+  \label{armijo1}
+  \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    $c_1$ & $\rho$ & $\lambda$ & Ilość wywołań & $f(\lambda).x$ & $f(\lambda).y$ & Minimum \\
+    \hline
+    0.1 & 0.7 & 0.855522 & 16 & -2.28896 & -2.28896 & -7.8906 \\
+    0.3 & 0.7 & 0.855532 & 6 & -2.28894 & -2.28894 & -7.8906 \\
+    0.5 & 0.7 & 0.85553 & 7 & -2.28894 & -2.28894 & -7.8906 \\
+    0.1 & 0.5 & 0.85553 & 7 & -2.28894 & -2.28894 & -7.8906 \\
+    0.3 & 0.5 & 0.85553 & 5 & -2.28894 & -2.28894 & -7.8906 \\
+    0.5 & 0.5 & 0.85553 & 7 & -2.28894 & -2.28894 & -7.8906 \\
+    0.1 & 0.3 & 0.855545 & 8 & -2.28891 & -2.28891 & -7.8906 \\
+    0.3 & 0.3 & 0.855543 & 7 & -2.28891 & -2.28891 & -7.8906 \\
+    0.5 & 0.3 & 0.855523 & 14 & -2.28895 & -2.28895 & -7.8906 \\
+    0.1 & 0.1 & 0.85553 & 18 & -2.28894 & -2.28894 & -7.8906 \\
+    0.3 & 0.1 & 0.85555 & 19 & -2.2889 & -2.2889 & -7.8906 \\
+    0.5 & 0.1 & 0.85553 & 26 & -2.28894 & -2.28894 & -7.8906 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsubsection{Wolf}
+
+Wyniki działania metody Wolfa prezentuje tabela \ref{wolf1}.
+
+\begin{table}
+  \centering
+  \caption{Wyniki działania programu dla funkcji testowej 1 dla kryterium Wolfa}
+  \label{wolf1}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    $c_1$ & $c_2$ & $\rho$ & $\lambda$ & Ilość wywołań & $f(\lambda).x$ & $f(\lambda).y$ & Minimum \\
+    \hline
+    0.1 & 0.2 & 0.1 & 0.855538 & 5 & -2.28892 & -2.28892 & -7.8906 \\
+    0.1 & 0.2 & 0.3 & 0.855526 & 5 & -2.28895 & -2.28895 & -7.8906 \\
+    0.1 & 0.2 & 0.4 & 0.85553 & 5 & -2.28894 & -2.28894 & -7.8906 \\
+    0.1 & 0.4 & 0.1 & 0.855536 & 8 & -2.28893 & -2.28893 & -7.8906 \\
+    0.1 & 0.4 & 0.3 & 0.855522 & 8 & -2.28896 & -2.28896 & -7.8906 \\
+    0.1 & 0.4 & 0.4 & 0.855541 & 7 & -2.28892 & -2.28892 & -7.8906 \\
+    0.1 & 0.6 & 0.1 & 0.855541 & 10 & -2.28892 & -2.28892 & -7.8906 \\
+    0.1 & 0.6 & 0.3 & 0.855537 & 9 & -2.28893 & -2.28893 & -7.8906 \\
+    0.1 & 0.6 & 0.4 & 0.855541 & 7 & -2.28892 & -2.28892 & -7.8906 \\
+    0.3 & 0.2 & 0.1 & 0.855538 & 5 & -2.28892 & -2.28892 & -7.8906 \\
+    0.3 & 0.2 & 0.3 & 0.855526 & 5 & -2.28895 & -2.28895 & -7.8906 \\
+    0.3 & 0.2 & 0.4 & 0.85553 & 5 & -2.28894 & -2.28894 & -7.8906 \\
+    0.3 & 0.4 & 0.1 & 0.855536 & 8 & -2.28893 & -2.28893 & -7.8906 \\
+    0.3 & 0.4 & 0.3 & 0.855522 & 8 & -2.28896 & -2.28896 & -7.8906 \\
+    0.3 & 0.4 & 0.4 & 0.855527 & 7 & -2.28895 & -2.28895 & -7.8906 \\
+    0.3 & 0.6 & 0.1 & 0.855541 & 10 & -2.28892 & -2.28892 & -7.8906 \\
+    0.3 & 0.6 & 0.3 & 0.855536 & 8 & -2.28893 & -2.28893 & -7.8906 \\
+    0.3 & 0.6 & 0.4 & 0.855539 & 8 & -2.28892 & -2.28892 & -7.8906 \\
+    0.5 & 0.2 & 0.1 & 0.855538 & 5 & -2.28892 & -2.28892 & -7.8906 \\
+    0.5 & 0.2 & 0.3 & 0.855526 & 5 & -2.28895 & -2.28895 & -7.8906 \\
+    0.5 & 0.2 & 0.4 & 0.85553 & 5 & -2.28894 & -2.28894 & -7.8906 \\
+    0.5 & 0.4 & 0.1 & 0.855536 & 8 & -2.28893 & -2.28893 & -7.8906 \\
+    0.5 & 0.4 & 0.3 & 0.855522 & 8 & -2.28896 & -2.28896 & -7.8906 \\
+    0.5 & 0.4 & 0.4 & 0.855527 & 7 & -2.28895 & -2.28895 & -7.8906 \\
+    0.5 & 0.6 & 0.1 & 0.855541 & 10 & -2.28892 & -2.28892 & -7.8906 \\
+    0.5 & 0.6 & 0.3 & 0.855536 & 8 & -2.28893 & -2.28893 & -7.8906 \\
+    0.5 & 0.6 & 0.4 & 0.855539 & 8 & -2.28892 & -2.28892 & -7.8906 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsubsection{Goldstein}
+
+Wyniki działania metody Goldsteina prezentuje tabela \ref{goldstein1}.
+
+\begin{table}
+  \centering
+  \caption{Wyniki działania programu dla funkcji testowej 1 dla kryterium Goldsteina}
+  \label{goldstein1}
+  \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    $c_1$ & $\rho$ & $\lambda$ & Ilość wywołań & $f(\lambda).x$ & $f(\lambda).y$ & Minimum \\
+    \hline
+    0.1 & 0.1 & 0.85553 & 18 & -2.28894 & -2.28894 & -7.8906 \\
+    0.1 & 0.3 & 0.855545 & 8 & -2.28891 & -2.28891 & -7.8906 \\
+    0.1 & 0.5 & 0.85553 & 7 & -2.28894 & -2.28894 & -7.8906 \\
+    0.1 & 0.7 & 0.855522 & 16 & -2.28896 & -2.28896 & -7.8906 \\
+    0.2 & 0.1 & 0.85553 & 8 & -2.28894 & -2.28894 & -7.8906 \\
+    0.2 & 0.3 & 0.855536 & 8 & -2.28893 & -2.28893 & -7.8906 \\
+    0.2 & 0.5 & 0.85553 & 5 & -2.28894 & -2.28894 & -7.8906 \\
+    0.2 & 0.7 & 0.855547 & 9 & -2.28891 & -2.28891 & -7.8906 \\
+    0.3 & 0.1 & 0.855534 & 7 & -2.28893 & -2.28893 & -7.8906 \\
+    0.3 & 0.3 & 0.855538 & 7 & -2.28892 & -2.28892 & -7.8906 \\
+    0.3 & 0.5 & 0.85553 & 5 & -2.28894 & -2.28894 & -7.8906 \\
+    0.3 & 0.7 & 0.855532 & 6 & -2.28894 & -2.28894 & -7.8906 \\
+    \hline
+  \end{tabular}
+\end{table}
 
 \begin{thebibliography}{99}
 \bibitem{grega.wyklad}
