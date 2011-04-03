@@ -45,21 +45,56 @@ Celem zadania było napisanie programu, który dla dowolnej funkcji dwóch zmien
 \section{Metoda rozwiązania}
 W celu rozwiązania zadania stworzyliśmy skrypt programu Matlab. Skrypt prezentuje użytkownikowi okienko GUI, w którym należy wprowadzić parametry:
 \begin{description}
- \item[funkcja] funkcja, która poddawana będzie optymalizacji,
- \item[start] punkt początkowy, oznaczany jako $x_0$
- \item[direction] kierunek; wektor od punktu początkowego do końcowego, oznaczany jako $\overrightarrow{d}$
+ \item[funkcja] funkcja, która poddawana będzie optymalizacji, oznaczona jako $F$,
+ \item[start] punkt początkowy, oznaczany jako $p_0$,
+ \item[direction] kierunek; wektor od punktu początkowego do końcowego, oznaczany jako $\overrightarrow{d}$,
  \item[c$_1$, c$_2$] parametry określające zachowanie się metod\footnote{Znaczenie tych parametrów zostanie omówione wraz z metodami.},
  \item[$\rho$] współczynnik zmiany kroku,
  \item[$\epsilon$] pożądana dokładność rozwiązania,
 \end{description}
 należy także wybrać jedno z dostępnych kryteriów.
 
-\section{Kryteria}
-Zadaniem programu jest poszukiwanie pewnej wartości kroku $\lambda$, która wyraża krotność wektora kierunku rozpoczynającego się w punkcie startowym. Krok ten będzie odpowiadał znalezionemu minimum.
-
-Poszukiwanie wartości kroku jest metodą iteracyjną, która w każdej iteracji przybliża wartość kroku, aż do osiągnięcia zadanego warunku stopu \ppauza w tym przypadku jest to kryterium stacjonarości:
+Zadaniem programu jest poszukiwanie pewnej wartości kroku $\lambda$, która wyraża krotność wektora kierunku rozpoczynającego się w punkcie startowym. Krok ten będzie odpowiadał znalezionemu minimum. Zależność pomiędzy wartością $\lambda$, a wartością funkcji $F$ prezentuje poniższy wzór:
 \begin{equation}
- \lvert\nabla F(x_0 + \lambda * \overrightarrow{d})\rvert \leq \epsilon
+ f(\lambda) = F(p_0.x + \lambda \cdot d.x, p_0.y + \lambda \cdot d.y)
+\end{equation}
+
+Należy zauważyć, że wartościom kroku należącym odcinka $\overline{p_0, p_0 + \overrightarrow{d}}$ odpowiadają wartości [0,~1].
+
+Poszukiwanie wartości kroku jest metodą iteracyjną, która w każdej iteracji przybliża wartość rozwiązania, aż do osiągnięcia zadanego warunku stopu \ppauza w tym przypadku jest to kryterium stacjonarości:
+\begin{equation}
+ \lvert\nabla f(\lambda)\rvert \leq \epsilon
+\end{equation}
+
+Punktem $p_k$ nazywać będziemy przybliżenie rozwiązania wyznaczone w $k$-tej iteracji, zaś symbolem $\lambda_k$ oznaczać będziemy krok podjęty w $k$-tej iteracji. Zależności pomiędzy tymi zmiennymi prezentują równania:
+\begin{equation}
+ \lambda = \displaystyle\sum\limits_{i=0}^n \lambda_i
+\end{equation}
+gdzie $n$ oznacza całkowitą ilość iteracji oraz:
+\begin{equation}
+ p_k = p_0 + \displaystyle\sum\limits_{i=0}^k \lambda_i \cdot d
+\end{equation}
+
+
+\section{Kryteria}
+Poza wymaganiem poprawy\footnote{Wartość $f(\lambda)$ dla każdego kolejnego oszacowania $\lambda$ powinna być mniejsza.}, stosowane są dodatkowe kryteria, które spełniają rolę kryterium stopu. Dzięki ich wykorzystaniu zapewniamy dokładniejsze i szybsze znalezienie rozwiązania.
+
+Każde z kryteriów zaimplementowane jest jako rekurencyjna metoda, której działanie przedstawia następujący algorytm:
+\begin{enumerate}
+ \item Pobierz od użytkownika wszystkie dane,
+ \item podstaw $\lambda_0 = 0$
+ \item jak $\lambda_k$ podstaw znak pochodnej $sign(f(\lambda))$,\label{alg:start}
+ \item sprawdź wybraną metodą, czy $f(\lambda + \lambda_k)$ spełnia warunki,\label{alg:one}
+ \item jeśli spełnia: podstaw $\lambda_k = \rho \cdot \lambda_k$, przejdź do \ref{alg:one},
+ \item jeśli nie jest spełniony warunek stacjonarości, rekurencyjnie przejdź do \ref{alg:start},
+ \item zakończ obliczenia, zwróć $\lambda$ i ilość wywołań.
+\end{enumerate}
+
+
+\subsection{Kryterium Armijo}
+Najprostszy test, kryterium Armijo, sprawdza czy spadek wartości funkcji w danej iteracji jest nie mniejszy niż jej pochodna przemnożona przez obrany parametr $c_1$. Warunek ten można zapisać w następujący sposób:
+\begin{equation}
+ f(\lambda + \lambda_k) \leq f(\lambda) + c_1 \cdot \lambda_k \cdot f'(\lambda)
 \end{equation}
 
 
