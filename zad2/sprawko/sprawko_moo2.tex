@@ -345,6 +345,33 @@ Wyniki działania metody Goldsteina prezentuje tabela \ref{goldstein2}.
   \end{tabular}
 \end{table}
 
+\section{Wnioski}
+Podczas testowania stworzonego programu napotkaliśmy duże problemy z takim dobraniem parametrów optymalizacji, aby rozwiązanie zostało w ogóle odnalezione. Duża część testów została odrzucona ze względu na brak wyniku.
+
+Powodem takiego stanu rzeczy może być takie dobranie dostępnych opcji (w tym optymalizowanej funkcji), że krok wywołania jest bardzo mały, a przez to przekroczony jest limit rekurencji.
+
+Innym powodem powyższego błędu może być przyjęta metoda różniczkowania \ppauza dokonujemy obliczenia wartości funkcji w trzech punktach i wykorzystując je szacujemy wartość pochodnej. W niektórych przypadkach metoda ta może dawać niepożądane rezultaty.
+
+\smallskip
+
+Dla wszystkich zestawów testowych ilość wymaganych do wykonania kroków jest dość mała, w związku z czym trudno jest jednoznacznie określić istnienie tendencji.
+
+Wydaje się jednak, że najlepsze rezultaty uzyskiwane są dla parametru $\rho$ równego 0,5 dla wszystkich metod.
+
+\smallskip
+
+W przypadku kryterium Armijo efekt zmiany $c_1$ zależny jest od parametru $\rho$.
+
+Zmiana tego parametru przy $\rho$ w okolicy 0.5 nie przynosi widocznych zmian, jednak gdy $\rho$ jest małe, zmniejszanie $c_1$ zmniejsza też wymaganą ilość kroków.
+
+\smallskip
+
+Kryterium Wolfa jest znacznie bardziej podatne na zmianę parametru $c_2$ \ppauza wraz ze wzrostem tej wartości wzrasta konieczna ilość kroków do rozwiązania. Optymalne do dobrania parametry to małe $c_1$, np. 0,1 oraz $\rho$ w okolicach 0,5.
+
+\smallskip
+
+Kryterium Goldsteina daje najlepsze rezultaty \ppauza dochodzi do rozwiązania w średnio najmniejszej ilości kroków. W przypadku tej metody widoczna jest poprawa w ilości kroków wraz z dążeniem parametrów $c_1$ oraz $\rho$ do 0,5.
+
 \begin{thebibliography}{99}
 \bibitem{grega.wyklad}
 Grega, Wojciech. \textit{Metody optymalizacji. Wykład 4} [online]. [dostęp: 27
