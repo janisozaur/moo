@@ -125,13 +125,14 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 	%			c2 = b(i2);
 	%			ro = c(i3);
 				[step, iterations] = feval(method, fun, startPoint, direction, c1, c2, ro, 0, epsilon, omega, 0);
-				result = startPoint + step * direction;
-				fprintf(1, '    %g & %g & %g & %d & %g & %g & %g \\\\\n', c1, ro, step, iterations, result(1), result(2), valueInPoint(fun, startPoint, direction, step));
-				%fprintf(1, '    %g & %g & %g & %g & %d & %g & %g & %g \\\\\n', c1, c2, ro, step, iterations, result(1), result(2), valueInPoint(fun, startPoint, direction, step));
+	%			result = startPoint + step * direction;
+	%			fprintf(1, '    %g & %g & %g & %d & %g & %g & %g \\\\\n', c1, ro, step, iterations, result(1), result(2), valueInPoint(fun, startPoint, direction, step));
+	%			fprintf(1, '    %g & %g & %g & %g & %d & %g & %g & %g \\\\\n', c1, c2, ro, step, iterations, result(1), result(2), valueInPoint(fun, startPoint, direction, step));
 	%		end
 	%	end
 	%end
-
+    %			fprintf(1, 'c1: %g, ro: %g, lambda: %g, ilosc krokow: %d, wynik.x: %g, wynik.y: %g, wynik.z: %g \n', c1, ro, step, iterations, result(1), result(2), valueInPoint(fun, startPoint, direction, step));
+	%			fprintf(1, 'c1: %g, c2: %g, ro: %g, lambda: %g, ilosc krokow: %d, wynik.x: %g, wynik.y: %g, wynik.z: %g \n', c1, c2, ro, step, iterations, result(1), result(2), valueInPoint(fun, startPoint, direction, step));
 
 function startXEdit_Callback(hObject, eventdata, handles)
 % hObject    handle to startXEdit (see GCBO)
