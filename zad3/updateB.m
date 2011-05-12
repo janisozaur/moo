@@ -1,4 +1,7 @@
-function result = updateB(B, p, q)
-	n = size(B, 3);
-	result(:, :) = B(:, :, n) + (p(:, n) * p(:, n)') / (p(:, n)' * q(:, n)) - (B(:, :, n) * q(:, n) * q(:, n)' * B(:, :, n)) / (q(:, n)' * B(:, :, n) * q(:, n));
+function result = updateB(Bv, pv, qv)
+	n = size(Bv, 3);
+	p = pv(:, n);
+	q = qv(:, n);
+	B = Bv(:, :, n);
+	result = B + (p * p') / (p' * q) - ((B * q) * (B * q)') / (q' * B * q);
 end
