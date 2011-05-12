@@ -38,5 +38,25 @@ function result = dfp(targetFun, epsilon, startPoint)
 			plotz(px, py) = feval(targetFun, [plotx(px); ploty(py)]);
 		end
 	end
+	solx = result(1, :);
+	soly = result(2, :);
+	for sx = 1:length(solx)
+		for sy = 1:length(soly)
+			solz(sx, sy) = feval(targetFun, [solx(sx); soly(sy)]);
+		end
+	end
+	
+	hold on
 	surf(plotx, ploty, plotz);
+	
+	for sx = 1:length(solx)
+		for sy = 1:length(soly)
+			%solz = feval(targetFun, [solx(sx); soly(sy)]);
+			plot3(solx(sx), soly(sy), solz(sx, sy), '--rs','LineWidth',2,'MarkerEdgeColor','k','MarkerFaceColor','g','MarkerSize',10);
+		end
+	end
+	hold off
+	%surf(plotx, ploty, plotz);
+	
+	%quiver
 end
