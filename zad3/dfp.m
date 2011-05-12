@@ -26,4 +26,17 @@ function result = dfp(targetFun, epsilon, startPoint)
 		iteration = iteration + 1;
 	end
 	result = x;
+	res = 50;
+	high = max(x, [], 2);
+	low = min(x, [], 2);
+	delta = (high - low) / res;
+	plotx = linspace(low(1) - delta(1), high(1) + delta(1), res);
+	ploty = linspace(low(2) - delta(2), high(2) + delta(2), res);
+	%plotz = zeros(size(plotx));
+	for px = 1:length(plotx)
+		for py = 1:length(ploty)
+			plotz(px, py) = feval(targetFun, [plotx(px); ploty(py)]);
+		end
+	end
+	surf(plotx, ploty, plotz);
 end
