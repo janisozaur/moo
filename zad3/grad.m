@@ -4,8 +4,10 @@ function result = grad(targetFun, x)
 	f = feval(targetFun, x);
     for i = 1:n
         xs = x;
-        xs(i) = xs(i) + delta;
-        y = feval(targetFun, xs);
-        result(i) = y - f;
+        xs(i) = x(i) + delta;
+        y1 = feval(targetFun, xs);
+        xs(i) = x(i) - delta;
+        y2 = feval(targetFun, xs);
+        result(i) = (y1 - y2) / (2 * delta);
 	end
 end
