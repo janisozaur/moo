@@ -47,32 +47,36 @@ $D_i$ jest macierzą obliczaną ze wzoru:
 \begin{center}
 $D_{i+1} = D_i + \frac{p_i p^{t}_i}{p^{t}_i q_i} - \frac{D_i q_i q^{t}_i D_i}{q^{t}_i D_i q_i}$\\
 \end{center}
-gdzie $p_i = \tau_i d_i$ oraz $q_i = \nabla f(z_{i+1}) - \nabla f(z_i)$\\
+gdzie $p_i = \tau_i d_i$ oraz $q_i = \nabla f(z_{i+1}) - \nabla f(z_i)$.
 
-\textbf{Opis algorytmu}\\
-\textbf{Krok 1:}
-\begin{itemize}
-\item[•] ustal dokładność algorytmu $\epsilon$
-\item[•] wybierz punkt startowy $x_o$
-\item[•] ustal startową postać macierzy $D$
-\item[•] podstaw $z_1 = x_0$
-\item[•] podstaw $n = 1$, $s = 1$
-\end{itemize}
-\textbf{Krok 2:}
-\begin{itemize}
-\item[•] czy $||\nabla f(z_i)|| < \epsilon $ jeśli tak to stop
-\item[•] podstaw $d_i = -D_i \nabla f(z_s)$
-\item[•] wyznacz $\tau_i$, tak aby $f(z_i + \tau_i d_i)$ było minimalne i $\tau \geq 0$
-\item[•] podstaw $z_{i+1} = z_i + \tau_i d_i$
-\item[•] czy $i \leq N$, jeśli tak to wykonaj krok 2.
-\item[•] podstaw $z_i = z_{i+1}$, oraz $x_{s+1} = z_{i+1}$
-\item[•] podstaw $s = n+1$ oraz $n = 1$ i przejdź do kroku 1.
-\end{itemize}
-\textbf{Krok 2:}
-\begin{itemize}
-\item[•] oblicz $D_{i+1}$
-\item[•] podstaw $n = n+1$
-\end{itemize}
+Wartość $\tau$ jest dobierana w każdym kroku tak, aby wartość $f(z_i + \tau_i d_i)$ była najmnijesza. Stosuje się w tym przypadku np. metodę złotego podziału, zauwżyliśmy jednak, że do poprawnego działania tej metody konieczne jest wyznaczenie przedziałów unimodalności funkcji, co odbywa się przez próbkowanie. Wykonaliśmy najpierw próbkowanie, pominęliśmy jednak metodę złotego podziału, gdyż uznaliśmy, że wartości pochodzące z próbkowania w zupełności wystarczą, ponieważ metoda ,,wyższego rzędu'', tj. DFP, i tak poda wystarczająco dobre, jeśli nie lepsze, rozwiązanie.
+
+\section{Opis algorytmu}
+\begin{enumerate}
+  \item \textbf{Krok 1:}
+    \begin{enumerate}
+    \item ustal dokładność algorytmu $\epsilon$
+    \item wybierz punkt startowy $x_o$
+    \item ustal startową postać macierzy $D$
+    \item podstaw $z_1 = x_0$
+    \item podstaw $n = 1$, $s = 1$
+    \end{enumerate}
+  \item \textbf{Krok 2:}
+    \begin{enumerate}
+    \item czy $||\nabla f(z_i)|| < \epsilon $ jeśli tak to stop
+    \item podstaw $d_i = -D_i \nabla f(z_s)$
+    \item wyznacz $\tau_i$, tak aby $f(z_i + \tau_i d_i)$ było minimalne i $\tau \geq 0$
+    \item podstaw $z_{i+1} = z_i + \tau_i d_i$
+    \item czy $i \leq N$, jeśli tak to wykonaj krok 2.
+    \item podstaw $z_i = z_{i+1}$, oraz $x_{s+1} = z_{i+1}$
+    \item podstaw $s = n+1$ oraz $n = 1$ i przejdź do kroku 1.
+    \end{enumerate}
+  \item \textbf{Krok 3:}
+    \begin{enumerate}
+    \item oblicz $D_{i+1}$
+    \item podstaw $n = n+1$
+    \end{enumerate}
+\end{enumerate}
 \section{Wyniki}
 
 \section{Wnioski}
