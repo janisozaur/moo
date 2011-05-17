@@ -1,0 +1,87 @@
+\documentclass{classrep}
+\usepackage[utf8]{inputenc}
+\usepackage[pdftex]{graphicx}
+\usepackage[polish]{babel}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{url}
+
+\studycycle{Informatyka, studia dzienne, II st.}
+\coursesemester{I}
+
+\coursename{Metody Obliczeniowe Optymalizacji}
+\courseyear{2010/2011}
+
+\courseteacher{mgr inż. Łukasz Chomątek}
+\coursegroup{czwartek, 14:15}
+\svnurl{https://serce.ics.p.lodz.pl/svn/labs/moo/lcjp_cz1415/wacjan/Zadanie3@118}
+
+\author{%
+  \studentinfo{Michał Janiszewski}{169485} \and
+  \studentinfo{Leszek Wach}{169513}
+}
+
+\title{Zadanie 3: Metoda quasi-Newtona w wersji DFP}
+
+\floatname{algorithm}{Algorytm}
+
+\begin{document}
+
+\maketitle
+
+\section{Cel zadania}
+Celem zadania było napisanie programu przeprowadzającego minimalizację funkcji dwóch zmiennych według algorytmu Davidon-Fletcher-Powell.
+
+\section{Metoda rozwiązania}
+Metoda Davidona-Fletchera-Powella jest również nazywana metodą przemiennej metryki. Należy do grupy procedur kwazi-newtonowskich, w których kolejne kroki wyliczane są ze wzoru:
+\begin{center}
+	$z_{i+1} = z_i + \tau d_i$
+\end{center}
+gdzie $d_i = -D_i \nabla f(z_i)$
+$D_i$ jest macierzą obliczaną ze wzoru:
+\begin{center}
+$D_{i+1} = D_i + \frac{p_i p^{t}_i}{p^{t}_i q_i} - \frac{D_i q_i q^{t}_i D_i}{q^{t}_i D_i q_i}$\\
+\end{center}
+gdzie $p_i = \tau_i d_i$ oraz $q_i = \nabla f(z_{i+1}) - \nabla f(z_i)$\\
+
+\textbf{Opis algorytmu}\\
+\textbf{Krok 1:}
+\begin{itemize}
+\item[•] ustal dokładność algorytmu $\epsilon$
+\item[•] wybierz punkt startowy $x_o$
+\item[•] ustal startową postać macierzy $D$
+\item[•] podstaw $z_1 = x_0$
+\item[•] podstaw $n = 1$, $s = 1$
+\end{itemize}
+\textbf{Krok 2:}
+\begin{itemize}
+\item[•] czy $||\nabla f(z_i)|| < \epsilon $ jeśli tak to stop
+\item[•] podstaw $d_i = -D_i \nabla f(z_s)$
+\item[•] wyznacz $\tau_i$, tak aby $f(z_i + \tau_i d_i)$ było minimalne i $\tau \geq 0$
+\item[•] podstaw $z_{i+1} = z_i + \tau_i d_i$
+\item[•] czy $i \leq N$, jeśli tak to wykonaj krok 2.
+\item[•] podstaw $z_i = z_{i+1}$, oraz $x_{s+1} = z_{i+1}$
+\item[•] podstaw $s = n+1$ oraz $n = 1$ i przejdź do kroku 1.
+\end{itemize}
+\textbf{Krok 2:}
+\begin{itemize}
+\item[•] oblicz $D_{i+1}$
+\item[•] podstaw $n = n+1$
+\end{itemize}
+\section{Wyniki}
+
+\section{Wnioski}
+
+\begin{thebibliography}{99}
+\bibitem{grega.wyklad}
+Grega, Wojciech. \textit{Metody optymalizacji. Wykład 4} [online]. [dostęp: 27
+marca 2011]. Dostępny w Internecie:
+\url{http://aq.ia.agh.edu.pl/Aquarium/Dydaktyk/Wyklady/MO/2005-06/Wyklad04.PDF}
+\end{thebibliography}
+
+\end{document}
