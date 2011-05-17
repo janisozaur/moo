@@ -51,7 +51,7 @@ $D_{i+1} = D_i + \frac{p_i p^{t}_i}{p^{t}_i q_i} - \frac{D_i q_i q^{t}_i D_i}{q^
 \end{center}
 gdzie $p_i = z_{i + 1} - x_i$ oraz $q_i = \nabla f(z_{i+1}) - \nabla f(z_i)$.
 
-Wartość $\tau$ jest dobierana w każdym kroku tak, aby wartość $f(z_i + \tau_i d_i)$ była najmnijesza. Stosuje się w tym przypadku np. metodę złotego podziału, zauwżyliśmy jednak, że do poprawnego działania tej metody konieczne jest wyznaczenie przedziałów unimodalności funkcji, co odbywa się przez próbkowanie. Wykonaliśmy najpierw próbkowanie, pominęliśmy jednak metodę złotego podziału, gdyż uznaliśmy, że wartości pochodzące z próbkowania w zupełności wystarczą, ponieważ metoda ,,wyższego rzędu'', tj. DFP, i tak poda wystarczająco dobre, jeśli nie lepsze, rozwiązanie.
+Wartość $\tau$ jest dobierana w każdym kroku tak, aby wartość $f(z_i + \tau_i d_i)$ była najmnijesza. Stosuje się w tym przypadku np. metodę złotego podziału \cite{wiley}, zauwżyliśmy jednak, że do poprawnego działania tej metody konieczne jest wyznaczenie przedziałów unimodalności funkcji, co odbywa się przez próbkowanie. Wykonaliśmy najpierw próbkowanie, pominęliśmy jednak metodę złotego podziału, gdyż uznaliśmy, że wartości pochodzące z próbkowania w zupełności wystarczą, ponieważ metoda ,,wyższego rzędu'', tj. DFP, i tak poda wystarczająco dobre, jeśli nie lepsze, rozwiązanie.
 
 \section{Opis algorytmu}
 \begin{enumerate}
@@ -127,35 +127,35 @@ Rozwiązanie znalezione przez WolframAlpha\footnote{\url{http://www.wolframalpha
 \caption{Wyniki funkcji 2.}
 \end{figure}
 
-\subsection{Funkcja testowa 2}
+\subsection{Funkcja testowa 3}
 Wykorzystaliśmy funkcję
 \begin{equation}
-  z = x^2 + y^2
+  z = 3 + (x - 1.5 \cdot y)^2 + (y - 2)^2
 \end{equation}
 
 Punkt startowy: $(20, 20)$.
 
-Rozwiązanie znalezione przez WolframAlpha\footnote{\url{http://www.wolframalpha.com/input/?i=min\%28x^2+\%2B+y^2\%29}}: $(0, 0)$, rozwiązanie znalezione programem (2 iteracje): $(0, 0)$.
+Rozwiązanie znalezione przez WolframAlpha\footnote{\url{http://www.wolframalpha.com/input/?i=min\%283+\%2B+\%28x+-+1.5*y\%29^2+\%2B+\%28y+-+2\%29^2\%29}}: $(3, 2)$, rozwiązanie znalezione programem (5 iteracji): $(3, 2)$.
 
 \begin{figure}
 \noindent\makebox[\textwidth]{%
  \subfigure[Widok X-Y]{
-  \includegraphics[width=0.5\linewidth]{f2_xy}
+  \includegraphics[width=0.5\linewidth]{f3_xy}
  }
  \subfigure[Widok Y-Z]{
-  \includegraphics[width=0.5\linewidth]{f2_yz}
+  \includegraphics[width=0.5\linewidth]{f3_yz}
  }
 }
-\caption{Wyniki funkcji 2.}
+\caption{Wyniki funkcji 3.}
 \end{figure}
 
 \section{Wnioski}
 
 \begin{thebibliography}{99}
-\bibitem{grega.wyklad}
-Grega, Wojciech. \textit{Metody optymalizacji. Wykład 4} [online]. [dostęp: 27
-marca 2011]. Dostępny w Internecie:
-\url{http://aq.ia.agh.edu.pl/Aquarium/Dydaktyk/Wyklady/MO/2005-06/Wyklad04.PDF}
+\bibitem{optym}
+Piotr Beling, Filip Wasilewski. \textit{Metody obliczeniowe optymalizacji} [online]. [dostęp: 18 maja 2011]. Dostępny w Internecie: \url{http://optymalizacja.w8.pl/QuasiNewton.html}
+\bibitem{wiley}
+P. Vankataraman, \textit{Applied optimization with MATLAB Programming}, \textit{John Wiley \& Sons}, New York, 2002, ISBN 0-471-34958-5.
 \end{thebibliography}
 
 \end{document}
