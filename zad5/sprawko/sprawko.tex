@@ -100,4 +100,56 @@ Jako parametr $k$ wykorzystaliśmy numer kroku, co jak łatwo zauważyć, spełn
 \end{equation}
 który zapewnia spełnienie wymogów 3 i 4 stawianych wobec $\Phi$.
 
+Ograniczenia w naszym podajemy w postaci wektora kolumnowego funkcji, które dla wektora kolumnowego z wartościami $x$ zwracają wartości mniejsze lub równe 0 dla dopuszczalnych $x$, a dla niedopuszczalnych \ppauza dodatnią wartość ograniczenia\footnote{Wartość ta zwiększa się wraz z przekraczaniem ograniczenia.}.
+
+Program rysuje wykres funkcji celu, a także, w miejscach, które przekraczają ograniczenia, zmienia kolor w celu jego uwidocznienia.
+
+\section{Wyniki}
+\subsection{Funkcja Schwefela}
+Funkcja celu:
+\begin{equation}
+ - x_1 \cdot \sin(\sqrt{\left|x_1\right|}) - x_2 \cdot \sin(\sqrt{\left|x_2\right|})
+\end{equation}
+
+Ograniczenia:
+\begin{itemize}
+ \item $g_1(x) = -\left(\frac{x_1}{5}\right)^2 - x_2 + 20$
+ \item $g_2(x) = \left(\frac{x_1}{5}\right)^2 + x_2 - 60$
+\end{itemize}
+
+Punkt startowy: $x = [47; -65]$
+Znalezione minimum: $x = [65.5479; -124.8294]$
+
+\subsection{Funkcja testowa 2}
+Funkcja celu:
+\begin{equation}
+ 3 + (x_1 - 1.5 \cdot x_2)^2 + (x_2 - 2)^2
+\end{equation}
+
+Ograniczenia:
+\begin{itemize}
+ \item $g_1(x) = -\left(\frac{x_1}{5}\right)^2 - x_2 + 20$
+ \item $g_2(x) = \left(\frac{x_1}{5}\right)^2 + x_2 - 60$
+\end{itemize}
+
+Punkt startowy: $x = [-15; 30]$
+Znalezione minimum: $x = [16.4820; 8.9395]$
+
+\begin{figure}
+ \includegraphics[width=\linewidth]{schwefel}
+ \caption{Wynik działania programu dla funkcji Schwefela}
+\end{figure}
+
+\begin{figure}
+ \includegraphics[width=\linewidth]{test2}
+ \caption{Wynik działania programu dla funkcji testowej 2}
+\end{figure}
+
+\begin{thebibliography}{99}
+\bibitem{fkary}
+Katedra automatyki, Akademia Górniczo-Hutnicza w Krakowie. \textit{METODA FUNKCJI KARY} [online]. [dostęp 9 czerwca 2011]. Dostępny w internecie: \url{http://aq.ia.agh.edu.pl/Aquarium/labs/opt/fkary.pdf}.
+\bibitem{funkcje}
+Marcin Molga, Czesław Smutnicki, \textit{Test functions for optimization needs} [online]. [dostęp 9 czerwca 2011]. Dostępny w internecie: \url{http://www.zsd.ict.pwr.wroc.pl/files/docs/functions.pdf}.
+\end{thebibliography}
+
 \end{document}
