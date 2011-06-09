@@ -1,0 +1,108 @@
+\documentclass{classrep}
+\usepackage[utf8]{inputenc}
+\usepackage[pdftex]{graphicx}
+\usepackage[polish]{babel}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{hyperref}
+
+\studycycle{Informatyka, studia dzienne, II st.}
+\coursesemester{I}
+
+\coursename{Metody Obliczeniowe Optymalizacji}
+\courseyear{2010/2011}
+
+\courseteacher{}
+\coursegroup{czwartek, 14:15}
+\svnurl{https://serce.ics.p.lodz.pl/svn/labs/moo/lcjp_cz1415/}
+
+\author{%
+  \studentinfo{Michał Janiszewski}{169485} \and
+  \studentinfo{Leszek Wach}{}
+}
+
+\title{Zadanie 4: Programowanie liniowe}
+\begin{document}
+
+\maketitle
+
+\section{Cel zadania}
+Celem zadania było napisanie programu implementującego rozwiązywanie zagadnienia programowania liniowego za pomocą dwufazowej metody sympleksu. Program powinien wykrywać sytuacje patologiczne (brak rozwiązań, nieskończenie wiele rozwiązań).
+
+\section{Opis problemu}
+Programowanie liniowe jest metodą optymalizacji problemów, które da się przedstawić jako funkcję celu oraz szereg ograniczeń, z których wszystkie posiadają postać liniową.
+
+Funkcja celu może zatem zostać zapisana w postaci
+\begin{equation}
+  f(x_1, x_2, ..., x_n) = c_1 x_1 + c_2 x_2 + ... + c_n x_n \displaystyle\sum_{j=1}^n c_j x_j
+\end{equation}
+gdzie $c_i, i = \{1, 2, \ldots, n\}$ to współczynniki przy kolejnych zmiennych równania.
+
+Na funkcję nakładane są ograniczenia postaci:
+\begin{equation}
+  \displaystyle\sum_{j=1}^n a_{ij} x_j = b_i
+  \label{eq.restraint_equal}
+\end{equation}
+lub
+\begin{equation}
+  \displaystyle\sum_{j=1}^n a_{ij} x_j \leq b_i
+  \label{eq.restraint_inequal}
+\end{equation}
+gdzie $a_{ij}, i = {1, 2, \ldots, m}$ to ograniczenia nakładane na poszczególne zmienne problemu.
+
+Dodatkowo istnieje też założenie, że każda zmienna $x_j$ jest nieujemna:
+\begin{equation}
+  x_j \geq 0, j = \{1, 2, \ldots, n\}
+\end{equation}
+
+W interpretacji geometrycznej simpleks jest fragmentem $n$-wymiarowej przestrzeni, ograniczanej przez $n$-wymiarowe półprzestrzenie określone równaniami \ref{eq.restraint_equal} i \ref{eq.restraint_inequal}. Ze względu na liniową postać wszystkich ograniczeń, łatwo zauważyć, że simpleks zawsze będzie wypukły. Z wypukłości simpleksu wynika, że rozwiązaniem tak postawionego problemu liniowego będzie zawsze (o ile rozwiązanie istnieje) wierzchołek tego simpleksu. W przypadku gdyby miał to być punkt nie będący wierzchołkiem, to można znaleźć inny punkt należący do simpleksu, dla którego wartość funkcji celu jest optymalniejsza. W przypadku gdy punkt rozwiązania optymalnego leży na odcinku łączącym dwa wierzchołki lub płasczyźnie wyznaczonej przez wierzchołki łatwo zauważyć, że albo uda się odnaleźć punkt o lepszej wartości funkcji celu, albo punkt ten posiada taką samą wartość funkcji celu, jak wierzchołek, przez co można rozumieć, że punkt taki leży pomiędzy wierzchołkami posiadającymi optymalne wartości funkcji celu, a zatem są one rozwiązaniem optymalizacji.
+
+Aby zapewnić jednolity opis problemu, należy przekształcić problem do tzw. postaci uzupełnieniowej, w której wszystkie nakładane ograniczenia (z pewnymi wyjątkami) mają postać równości. Można to osiągnąć wykorzystując poniższy wzór:
+\begin{equation}
+  \displaystyle\sum_{j=1}^n a_{ij} x_j \leq b_i \Leftrightarrow \displaystyle\sum_{j=1}^n a_{ij} x_j + x_{n + i} = b_i
+\end{equation}
+
+Powyższe ograniczenia oraz funkcję celu można zapisać w macierzy następującej postaci:
+\begin{equation}
+  TS = \left[ \begin{array}{c|c}
+		C & 0 \\
+		\hline
+		A & B \\
+             \end{array}
+      \right]
+\end{equation}
+gdzie poszczególne zmienne to:
+\begin{equation}
+ A =
+ \begin{pmatrix}
+  a_{1,1} & a_{1,2} & \cdots & a_{1,n+m} \\
+  a_{2,1} & a_{2,2} & \cdots & a_{2,n+m} \\
+  \vdots  & \vdots  & \ddots & \vdots  \\
+  a_{m,1} & a_{m,2} & \cdots & a_{m,n+m}
+ \end{pmatrix}
+\end{equation}
+
+\begin{equation}
+  B = \left[ \begin{array}{c}
+		b_1 \\
+		b_2 \\
+		\vdots \\
+		b_m \\
+             \end{array}
+      \right]
+\end{equation}
+
+\begin{equation}
+  C = \left[c_1, c_2, \ldots, c_{n+m} \right]
+\end{equation}
+
+Wśród zmiennych z macierzy $A$ możemy wyróżnić zmienne bazowe, tzn. takie, które w elementach odpowiadającej im kolumny posiadają tylko jedną jedynka, a pozostałe elementy wynoszą zero. Pozostałe zmienne nazywamy zmiennymi niebazowymi. Może istnieć sytuacja, w której podane ograniczenia nie wyznaczają wszystkich zmiennych bazowych, w takim przypadku należy dostawić macierz jednostkową $I$ tak aby dla każdego ograniczenia istniała zmienna bazowa.
+
+Tablica simpleksowa opisuje pewien punkt 
+
+\end{document}
