@@ -1,0 +1,18 @@
+wiadomości i pojęcia podstawowe
+algorytmy optymalizacji jednowymiarowej
+metody bezgradientowe optymalizacji bez ograniczeń
+metody gradientow optymalizacji bez ograniczeń
+programowanie liniowe
+metody optymalizacji z ograniczeniami
+
+ocena końcowa dla wykładu uwzględnia dwa testowe sprawdziany w trakcie semestru
+
+Rastrigin
+
+scilab + atoms
+
+rolnik ma pole o powieszchni S i chciałby je obsiać i żytem i przenicą
+S=Sż + Sp
+Z każdego ha ma jakiś zysk, chciałby, aby zysk był największy
+zysk: Z = Zż*Sż + Zp*Sp
+

@@ -1,0 +1,102 @@
+  %view(134, 46) ;     
+[x,y] = meshgrid(-2:.2:2,-2:.2:3);
+        load choix; 
+        
+        if choix==1
+        z= 100.*(y-x.^2).^2+(1-x).^2;
+        end
+        
+        if choix==2
+        z= x-y+2.*x.^2+2.*x.*y+y.^2;
+        end 
+        
+        if choix==3
+        z= exp(x.^2+5.*y.^2)+x.^2+80.*y.^2;
+        end 
+        
+        if choix==4
+          v=warndlg('Représentation impossible','!! Erreur !!') ; 
+          close (v);
+          close (figure(1));
+    
+       algodfp1;
+       break;
+        end 
+        
+        if choix==5
+        z= (x-2).^2+(x-2.*y).^2;
+        end 
+        
+        
+     if choix==6
+        z= 10.*x.^2+y.^2;
+        end 
+        
+        if choix==7
+        z= 3.*x.^2+4.*y.^2-6.*x+16.*y+19;
+        
+        end
+        
+       if choix==8
+        z=3.*(x-0.5).^2+7.*(y-0.75).^2;
+       end
+       
+       if choix==9
+        z=3.*x.^2+3.*y.^2+4.*x.*y+2;
+       end
+      
+       if choix==10
+        z=3.*x.^2 + 2.*x.*y + y.^2;
+       end
+       if choix==11
+        z=x.^4+y.^4-2*x.^2-4*x.*y-2.*y.^2;
+       end
+       
+       if choix==12
+        z=2+((x-1).^2+(y-1).^2);
+       end
+       
+       
+       if choix==13
+        z=2.*x.^2+4.*x.*y.^3-10.*x.*y+y.^2;
+       end
+       
+        if choix==14
+        z=8.*x.^2+4.*x.*y+5*y.^2;
+       end
+       
+       if choix==15
+        %z=1.2+0.1.*x.^2+((0.1+0.1.*y.^2)/x.^2)+((0.1.*x.^2.*y.^2+10)/(x.*y).^4);
+        z=8.*x.^2+4.*x.*y+5*y.^2;
+       end
+       
+       if choix==16
+       z=sin(x).* sin(y).* exp(-x.^2 - y.^2);
+       end
+       
+       if choix==17
+       z=x.*exp(-x.^2-y.^2);
+       end
+       
+  
+        clf;
+        xlabel('X');
+        ylabel('Y');
+        title('Représentation de la Fonction f(x,y)','fontsize',15,'color','red')
+        surfc(x,y,z);
+       legend(['xmin = ',num2str(pt(1))],['ymin = ',num2str(pt(2))],2);
+      
+        shading interp;
+        hold on;
+        plot3(pt(1),pt(2),fx,'.-red', 'MarkerSize',30) ;
+        ptt=[pt(1) pt(2)];
+     
+        if all(abs(numgrad(ptt','mafonction'))<0.01)
+      
+       % text(pt(1),pt(2),[' \leftarrow le point minimum =',num2str(ptt)],'FontSize',13)
+      text(pt(1),pt(2),' \leftarrow le point minimum ', ...
+         'FontSize',15,'Rotation',90, ...
+         'Color','black');
+          end
+        pause(0.0001);
+        

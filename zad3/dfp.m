@@ -26,7 +26,7 @@ function result = dfp(targetFun, epsilon, startPoint)
 		iteration = iteration + 1;
 	end
 	result = x;
-	res = 50;
+	res = 75;
 	high = max(x, [], 2);
 	low = min(x, [], 2);
 	delta = (high - low) / res;
@@ -35,7 +35,7 @@ function result = dfp(targetFun, epsilon, startPoint)
 	%plotz = zeros(size(plotx));
 	for px = 1:length(plotx)
 		for py = 1:length(ploty)
-			plotz(py, px) = feval(targetFun, [plotx(px); ploty(py)]);
+			plotz(py, px) = feval(targetFun, [plotx(px); ploty(py)]) + 0.001;
 		end
 	end
 	solx = result(1, :);
